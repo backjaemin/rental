@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyclo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .timer-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 10px solid #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: flex;
+        }
+        #terms {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Screen 1 -->
+    <div id="screen1" class="screen active h-screen flex flex-col justify-center items-center bg-red-500 text-white hidden">
+        <h1 class="text-5xl font-bold mb-4">ICIS</h1>
+        <p class="text-xl mb-8">Rental Badminton for everyone</p>
+        <button class="bg-black text-white py-2 px-4 rounded" onclick="showScreen(2)">이용하기</button>
+    </div>
+
+    <!-- Screen 2 -->
+    <div id="screen2" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+        <h2 class="text-2xl mb-4">휴대폰 번호를 알려주세요</h2>
+        <div class="flex items-center mb-4">
+            <span class="mr-2">+82</span>
+            <input id="phoneNumber" type="text" class="border-b-2 border-gray-300 focus:border-green-500 outline-none" placeholder="010-0000-0000">
+        </div>
+        
+        <div id="error-message" class="text-red-500 mb-4"></div>
+        
+        <button class="bg-green-500 text-white py-2 px-4 rounded" onclick="validatePhoneNumber()">확인</button>
+
+        <!-- Terms and Conditions -->
+        <div id="terms" class="w-full px-4 mt-4">
+            <h3 class="text-lg mb-2">약관 모두 동의하기</h3>
+            <ul class="list-disc list-inside mb-4">
+                <li>[필수] 서비스 이용약관</li>
+                <li>[필수] 개인정보 수집 및 이용 동의</li>
+                <li>[필수] 위치정보 서비스 이용약관</li>
+                <li>[선택] 마케팅 수신 동의</li>
+            </ul>
+            <button class="bg-green-500 text-white py-2 px-4 rounded w-full" onclick="showScreen(3)">동의하고 진행</button>
+        </div>
+    </div>
+
+    <!-- Screen 3 -->
+    <div id="screen3" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+        <img src="testpictrue1.PNG" alt="My Image">
+        
+        <button class="bg-green-500 text-white py-2 px-4 rounded" onclick="startTimer()">확인</button>
+    </div>
+
+    <!-- Screen 4 -->
+    <div id="screen4" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+        <h2 class="text-2xl mb-4">Timer</h2>
+        <div class="timer-circle mb-4">
+            <span id="timer">00:00:00</span>
+        </div>
+        <button class="bg-red-500 text-white py-2 px-4 rounded" onclick="stopTimer()">사용종료</button>
+    </div>
+
+    <!-- Screen 5 -->
+    <div id="screen5" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+        <img src="testpictrue2.PNG" alt="My Image">
+        <button class="bg-blue-500 text-white py-2 px-4 rounded" onclick="showScreen(6)">확인</button>
+    </div>
+
+    <!-- Screen 6 -->
+    <div id="screen6" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+        <div class="w-3/4 h-1/4 bg-gray-200 mb-4 flex justify-center items-center">
+            <span id="totalTime"></span>
+        </div>
+        <div class="w-3/4 h-1/4 bg-gray-200 mb-4"></div>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded" onclick="showScreen(7)">다음</button>
+    </div>
+
+    <!-- Screen 7 -->
+    <div id="screen7" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+        <button class="bg-blue-500 text-white py-2 px-4 rounded mb-2">배드민턴 라켓이나 셔틀콕이 없어요!</button>
+        <div class="flex flex-col items-center mb-4">
+            <button class="bg-blue-500 text-white py-2 px-4 rounded mb-2">사용중에 떨어지거나 부숴졌어요!</button>
+            <button class="bg-blue-500 text-white py-2 px-4 rounded mb-2">아니요, 처음부터 없었어요!</button>
+        </div>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded mb-2">잠금장치가 잠기지 않아요!</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded">확인</button>
+    </div>
+
+    <script>
+        let startTime, interval;
+
+        document.getElementById('phoneNumber').addEventListener('input', function (e) {
+            let input = e.target.value.replace(/\D/g, '');
+            if (input.length > 3) {
+                input = input.slice(0, 3) + '-' + input.slice(3);
+            }
+            if (input.length > 8) {
+                input = input.slice(0, 8) + '-' + input.slice(8);
+            }
+            e.target.value = input;
+        });
+
+        function validatePhoneNumber() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const phoneRegex = /^010-\d{4}-\d{4}$/;
+            if (!phoneRegex.test(phoneNumber)) {
+                document.getElementById('error-message').textContent = '올바른 형식의 전화번호를 입력해주세요.';
+            } else {
+                document.getElementById('error-message').textContent = '';
+                showTerms();
+            }
+        }
+
+        function showScreen(screenNumber) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById('screen' + screenNumber).classList.add('active');
+        }
+
+        function showTerms() {
+            document.getElementById('terms').style.display = 'block';
+            document.getElementById('screen2').scrollTo(0, document.getElementById('terms').offsetTop);
+        }
+
+        function startTimer() {
+            showScreen(4);
+            startTime = new Date();
+            interval = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            const elapsedTime = new Date(now - startTime);
+            const hours = String(elapsedTime.getUTCHours()).padStart(2, '0');
+            const minutes = String(elapsedTime.getUTCMinutes()).padStart(2, '0');
+            const seconds = String(elapsedTime.getUTCSeconds()).padStart(2, '0');
+            document.getElementById('timer').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function stopTimer() {
+            clearInterval(interval);
+            const endTime = new Date();
+            const elapsedTime = new Date(endTime - startTime);
+            const hours = elapsedTime.getUTCHours();
+            const minutes = elapsedTime.getUTCMinutes();
+            const seconds = elapsedTime.getUTCSeconds();
+            
+            let formattedTime;
+            if (hours > 0) {
+                formattedTime = `${String(hours).padStart(2, '0')}시간 ${String(minutes).padStart(2, '0')}분 ${String(seconds).padStart(2, '0')}초`;
+            } else {
+                formattedTime = `${String(minutes).padStart(2, '0')}분 ${String(seconds).padStart(2, '0')}초`;
+            }
+            document.getElementById('totalTime').textContent = formattedTime;
+            showScreen(5);
+        }
+    </script>
+</body>
+</html>
