@@ -4,32 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyclo</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-        .timer-circle {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 10px solid #4CAF50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        .screen {
-            display: none;
-        }
-        .screen.active {
-            display: flex;
-        }
-        #terms {
-            display: none;
-        }
-    </style>
+
+
 </head>
 <body class="bg-gray-100 text-gray-900">
 
@@ -67,18 +46,31 @@
 
     <!-- Screen 3 -->
     <div id="screen3" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
-        <img src="testpictrue1.PNG" alt="My Image">
+        <img src="picture1.PNG" alt="My Image">
         
         <button class="bg-green-500 text-white py-2 px-4 rounded" onclick="startTimer()">확인</button>
     </div>
 
     <!-- Screen 4 -->
     <div id="screen4" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
-        <h2 class="text-2xl mb-4">Timer</h2>
-        <div class="timer-circle mb-4">
-            <span id="timer">00:00:00</span>
+        <div class="container shadow-lg rounded-lg p-8">
+            <h1 class="timefont text-3xl font-roboto mono text-center mb-8">TIMER</h1>
+            <div class="flex justify-around mb-8">
+                <div class="text-center">
+                    <div id="timerhour" class="timefont2 text-5xl font-bold border rounded-lg p-4">00</div>
+                    <div class="timefont text-lg mt-2">Hours</div>
+                </div>
+                <div class="text-center">
+                    <div id="timerminutes" class="timefont2 text-5xl font-bold border rounded-lg p-4">00</div>
+                    <div class="timefont text-lg mt-2">Minutes</div>
+                </div>
+                <div class="text-center">
+                    <div id="timerseconds" class="timefont2 text-5xl font-bold border rounded-lg p-4">00</div>
+                    <div class="timefont text-lg mt-2">Seconds</div>
+                </div>
+            </div>
         </div>
-        <button class="bg-red-500 text-white py-2 px-4 rounded" onclick="stopTimer()">사용종료</button>
+        <button class="btn-stop text-white font-bold py-2 px-4 rounded-lg " onclick="stopTimer()">사용종료</button>
     </div>
 
     <!-- Screen 5 -->
@@ -157,7 +149,10 @@
             const hours = String(elapsedTime.getUTCHours()).padStart(2, '0');
             const minutes = String(elapsedTime.getUTCMinutes()).padStart(2, '0');
             const seconds = String(elapsedTime.getUTCSeconds()).padStart(2, '0');
-            document.getElementById('timer').textContent = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('timerhour').textContent = `${hours}`;
+            document.getElementById('timerminutes').textContent = `${minutes}`;
+            document.getElementById('timerseconds').textContent = `${seconds}`;
+
         }
 
         function stopTimer() {

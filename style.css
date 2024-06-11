@@ -1,0 +1,30 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.screen {
+    display: none;
+}
+.screen.active {
+    display: flex;
+}
+#terms {
+    display: none;
+}
+
+.container {
+    background-color: #011c2c;
+}
+
+.btn-stop {
+    background-color: #bebebe;
+}
+
+.timefont {
+    color :#FFFFFF;
+}
+
+.timefont2 {
+    background-color: #011c2c;
+    color :#FFFFFF;
+}
