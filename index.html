@@ -7,96 +7,96 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-900">
 
     <!-- Screen 1 -->
-    <div id="screen1" class="screen active h-screen flex flex-col justify-center items-center bg-red-500 text-white hidden">
+    <div id="screen1" class="screen active h-screen flex flex-col justify-center items-center bg-gray-900 text-white">
         <h1 class="text-5xl font-bold mb-4">ICIS</h1>
         <p class="text-xl mb-8">Rental Badminton for everyone</p>
-        <button class="bg-black text-white py-2 px-4 rounded" onclick="showScreen(2)">이용하기</button>
+        <button class="btn-hover color-8" onclick="showScreen(2)">이용하기</button>
     </div>
 
     <!-- Screen 2 -->
-    <div id="screen2" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+    <div id="screen2" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
         <h2 class="text-2xl mb-4">휴대폰 번호를 알려주세요</h2>
         <div class="flex items-center mb-4">
             <span class="mr-2">+82</span>
-            <input id="phoneNumber" type="text" class="border-b-2 border-gray-300 focus:border-green-500 outline-none" placeholder="010-0000-0000">
+            <input id="phoneNumber" type="text" class="border-b-2 border-gray-300 focus:border-gray-700 outline-none" placeholder="010-0000-0000">
         </div>
         
         <div id="error-message" class="text-red-500 mb-4"></div>
         
-        <button class="bg-green-500 text-white py-2 px-4 rounded" onclick="validatePhoneNumber()">확인</button>
+        <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="validatePhoneNumber()">확인</button>
 
         <!-- Terms and Conditions -->
         <div id="terms" class="w-full px-4 mt-4">
-            <h3 class="text-lg mb-2">약관 모두 동의하기</h3>
-            <ul class="list-disc list-inside mb-4">
-                <li>[필수] 서비스 이용약관</li>
-                <li>[필수] 개인정보 수집 및 이용 동의</li>
-                <li>[필수] 위치정보 서비스 이용약관</li>
-                <li>[선택] 마케팅 수신 동의</li>
+            <ul class="list-disc list-inside mb-4 text-gray-700">
+                <li><input type="checkbox" id="checkAll" class="checkbox" onclick="checkAll()"> 약관 모두 동의하기</li>
+                <li><input type="checkbox" id="serviceTerms" class="checkbox"> [필수] 서비스 이용약관</li>
+                <li><input type="checkbox" id="privacyTerms" class="checkbox"> [필수] 개인정보 수집 및 이용 동의</li>
+                <li><input type="checkbox" id="marketingTerms" class="checkbox"> [선택] 마케팅 수신 동의</li>
             </ul>
-            <button class="bg-green-500 text-white py-2 px-4 rounded w-full" onclick="showScreen(3)">동의하고 진행</button>
+            <div id="terms-error-message" class="text-red-500 mb-4"></div>
+            <button class="bg-gray-900 text-white py-2 px-4 rounded w-full" onclick="proceedWithTerms()">동의하고 진행</button>
         </div>
     </div>
 
     <!-- Screen 3 -->
-    <div id="screen3" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+    <div id="screen3" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
         <img src="picture1.PNG" alt="My Image">
-        
-        <button class="bg-green-500 text-white py-2 px-4 rounded" onclick="startTimer()">확인</button>
+        <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="startTimer()">확인</button>
     </div>
 
     <!-- Screen 4 -->
-    <div id="screen4" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
-        <div class="container shadow-lg rounded-lg p-8">
+    <div id="screen4" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
+        <div class="container shadow-lg rounded-lg p-8 bg-gray-900">
             <h1 class="timefont text-3xl font-roboto mono text-center mb-8">TIMER</h1>
             <div class="flex justify-around mb-8">
                 <div class="text-center">
-                    <div id="timerhour" class="timefont2 text-5xl font-bold border rounded-lg p-4">00</div>
+                    <div id="timerhour" class="timefont2 text-5xl font-bold border rounded-lg p-4 bg-gray-800">00</div>
                     <div class="timefont text-lg mt-2">Hours</div>
                 </div>
                 <div class="text-center">
-                    <div id="timerminutes" class="timefont2 text-5xl font-bold border rounded-lg p-4">00</div>
+                    <div id="timerminutes" class="timefont2 text-5xl font-bold border rounded-lg p-4 bg-gray-800">00</div>
                     <div class="timefont text-lg mt-2">Minutes</div>
                 </div>
                 <div class="text-center">
-                    <div id="timerseconds" class="timefont2 text-5xl font-bold border rounded-lg p-4">00</div>
+                    <div id="timerseconds" class="timefont2 text-5xl font-bold border rounded-lg p-4 bg-gray-800">00</div>
                     <div class="timefont text-lg mt-2">Seconds</div>
                 </div>
             </div>
         </div>
-        <button class="btn-stop text-white font-bold py-2 px-4 rounded-lg " onclick="stopTimer()">사용종료</button>
+        <button class="btn-stop text-gray-900 font-bold py-2 px-4 rounded-lg bg-gray-300" onclick="stopTimer()">사용종료</button>
     </div>
 
     <!-- Screen 5 -->
-    <div id="screen5" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+    <div id="screen5" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
         <img src="testpictrue2.PNG" alt="My Image">
-        <button class="bg-blue-500 text-white py-2 px-4 rounded" onclick="showScreen(6)">확인</button>
+        <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="showScreen(6)">확인</button>
     </div>
 
     <!-- Screen 6 -->
-    <div id="screen6" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
+    <div id="screen6" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
         <div class="w-3/4 h-1/4 bg-gray-200 mb-4 flex justify-center items-center">
-            <span id="totalTime"></span>
+            <span id="totalTime" class="text-gray-900"></span>
         </div>
         <div class="w-3/4 h-1/4 bg-gray-200 mb-4"></div>
-        <button class="bg-blue-500 text-white py-2 px-4 rounded" onclick="showScreen(7)">다음</button>
+        <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="showScreen(7)">다음</button>
     </div>
 
     <!-- Screen 7 -->
-    <div id="screen7" class="screen h-screen flex flex-col justify-center items-center bg-white hidden">
-        <button class="bg-blue-500 text-white py-2 px-4 rounded mb-2">배드민턴 라켓이나 셔틀콕이 없어요!</button>
+    <div id="screen7" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
+        <button class="bg-gray-900 text-white py-2 px-4 rounded mb-2">배드민턴 라켓이나 셔틀콕이 없어요!</button>
         <div class="flex flex-col items-center mb-4">
-            <button class="bg-blue-500 text-white py-2 px-4 rounded mb-2">사용중에 떨어지거나 부숴졌어요!</button>
-            <button class="bg-blue-500 text-white py-2 px-4 rounded mb-2">아니요, 처음부터 없었어요!</button>
+            <button class="bg-gray-900 text-white py-2 px-4 rounded mb-2">사용중에 떨어지거나 부숴졌어요!</button>
+            <button class="bg-gray-900 text-white py-2 px-4 rounded mb-2">아니요, 처음부터 없었어요!</button>
         </div>
-        <button class="bg-blue-500 text-white py-2 px-4 rounded mb-2">잠금장치가 잠기지 않아요!</button>
-        <button class="bg-blue-500 text-white py-2 px-4 rounded">확인</button>
+        <button class="bg-gray-900 text-white py-2 px-4 rounded mb-2">잠금장치가 잠기지 않아요!</button>
+        <button class="bg-gray-900 text-white py-2 px-4 rounded">확인</button>
     </div>
 
     <script>
@@ -124,12 +124,33 @@
             }
         }
 
+        function checkAll() {
+            const checkboxes = document.querySelectorAll('#terms input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = document.getElementById('checkAll').checked;
+            });
+        }
+
+        function proceedWithTerms() {
+            const serviceTermsChecked = document.getElementById('serviceTerms').checked;
+            const privacyTermsChecked = document.getElementById('privacyTerms').checked;
+            if (serviceTermsChecked && privacyTermsChecked) {
+                document.getElementById('terms-error-message').textContent = '';
+                showScreen(3);
+            } else {
+                document.getElementById('terms-error-message').textContent = '약관에 동의해주세요.';
+            }
+        }
+
         function showScreen(screenNumber) {
             const screens = document.querySelectorAll('.screen');
             screens.forEach(screen => {
                 screen.classList.remove('active');
+                screen.classList.add('hidden');
             });
-            document.getElementById('screen' + screenNumber).classList.add('active');
+            const screen = document.getElementById('screen' + screenNumber);
+            screen.classList.add('active');
+            screen.classList.remove('hidden');
         }
 
         function showTerms() {
@@ -152,7 +173,6 @@
             document.getElementById('timerhour').textContent = `${hours}`;
             document.getElementById('timerminutes').textContent = `${minutes}`;
             document.getElementById('timerseconds').textContent = `${seconds}`;
-
         }
 
         function stopTimer() {

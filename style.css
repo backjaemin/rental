@@ -1,19 +1,27 @@
 body {
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .screen {
     display: none;
+    width: 100vw;
+    height: 100vh;
 }
+
 .screen.active {
     display: flex;
 }
+
 #terms {
     display: none;
 }
 
 .container {
     background-color: #011c2c;
+    max-width: 90%;
+    margin: auto;
 }
 
 .btn-stop {
@@ -21,10 +29,87 @@ body {
 }
 
 .timefont {
-    color :#FFFFFF;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-style: normal;
+    font-family: "Roboto Mono", monospace;
 }
 
 .timefont2 {
     background-color: #011c2c;
-    color :#FFFFFF;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-style: normal;
+    font-family: "Roboto Mono", monospace;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.btn-hover {
+    margin: 10%;
+    text-align: center;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-hover.color-8 {
+    background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+input[type="text"] {
+    width: 80%;
+}
+
+button {
+    width: 80%;
+    max-width: 300px;
+}
+
+ul {
+    width: 80%;
+    max-width: 300px;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+
+
+@media (max-width: 600px) {
+    .timefont, .timefont2 {
+        font-size: 1rem;
+    }
+
+    .timefont2 {
+        padding: 1rem;
+    }
+
+    .timefont2.text-5xl {
+        font-size: 2.5rem;
+    }
+
+    .btn-hover {
+        width: 150px;
+        height: 45px;
+    }
 }
