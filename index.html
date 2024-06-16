@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="bg-gray-100 text-gray-900">
 
     <!-- Screen 1 -->
@@ -25,11 +28,12 @@
         <h2 class="text-2xl mb-4">휴대폰 번호를 알려주세요</h2>
         <div class="flex items-center mb-4">
             <span class="mr-2">+82</span>
-            <input id="phoneNumber" type="text" class="border-b-2 border-gray-300 focus:border-gray-700 outline-none" placeholder="010-0000-0000">
+            <input id="phoneNumber" type="text" class="border-b-2 border-gray-300 focus:border-gray-700 outline-none"
+                placeholder="010-0000-0000">
         </div>
-        
+
         <div id="error-message" class="text-red-500 mb-4"></div>
-        
+
         <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="validatePhoneNumber()">확인</button>
 
         <!-- Terms and Conditions -->
@@ -41,7 +45,8 @@
                 <li><input type="checkbox" id="marketingTerms" class="checkbox"> [선택] 마케팅 수신 동의</li>
             </ul>
             <div id="terms-error-message" class="text-red-500 mb-4"></div>
-            <button class="bg-gray-900 text-white py-2 px-4 rounded w-full" onclick="proceedWithTerms()">동의하고 진행</button>
+            <button class="bg-gray-900 text-white py-2 px-4 rounded w-full" onclick="proceedWithTerms()">동의하고
+                진행</button>
         </div>
     </div>
 
@@ -61,16 +66,19 @@
                     <div class="timefont text-lg mt-2">Hours</div>
                 </div>
                 <div class="text-center">
-                    <div id="timerminutes" class="timefont2 text-5xl font-bold border rounded-lg p-4 bg-gray-800">00</div>
+                    <div id="timerminutes" class="timefont2 text-5xl font-bold border rounded-lg p-4 bg-gray-800">00
+                    </div>
                     <div class="timefont text-lg mt-2">Minutes</div>
                 </div>
                 <div class="text-center">
-                    <div id="timerseconds" class="timefont2 text-5xl font-bold border rounded-lg p-4 bg-gray-800">00</div>
+                    <div id="timerseconds" class="timefont2 text-5xl font-bold border rounded-lg p-4 bg-gray-800">00
+                    </div>
                     <div class="timefont text-lg mt-2">Seconds</div>
                 </div>
             </div>
         </div>
-        <button class="btn-stop text-gray-900 font-bold py-2 px-4 rounded-lg bg-gray-300" onclick="stopTimer()">사용종료</button>
+        <button class="btn-stop text-gray-900 font-bold py-2 px-4 rounded-lg bg-gray-300"
+            onclick="stopTimer()">사용종료</button>
     </div>
 
     <!-- Screen 5 -->
@@ -79,13 +87,25 @@
         <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="showScreen(6)">확인</button>
     </div>
 
+
     <!-- Screen 6 -->
     <div id="screen6" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
-        <div class="w-3/4 h-1/4 bg-gray-200 mb-4 flex justify-center items-center">
-            <span id="totalTime" class="text-gray-900"></span>
+        <div class="bg-white p-6 rounded-lg shadow-lg w-80">
+            <h1 class="text-center text-xl font-bold mb-4">이용이 종료되었습니다</h1>
+            <div class="bg-gray-200 p-4 rounded-lg mb-4">
+                <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="mx-auto">
+            </div>
+            <div class="bg-gray-200 p-4 rounded-lg mb-4">
+                <p class="text-lg"><strong>이용 시간 :</strong> <strong id="totalTime">총 30분</strong></p>
+                <p class="text-lg"><strong>요금 :</strong> <strong id="totalFee">1000원</strong></p>
+                <p class="text-lg"><strong>위치 :</strong> 온천천-1</p>
+            </div>
+            <div class="flex justify-around mb-4">
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-full">고장 제보</button>
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-full">서비스 문의</button>
+            </div>
+            <button class="bg-blue-500 text-white w-full py-2 rounded-lg" onclick="showScreen(7)">확인</button>
         </div>
-        <div class="w-3/4 h-1/4 bg-gray-200 mb-4"></div>
-        <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="showScreen(7)">다음</button>
     </div>
 
     <!-- Screen 7 -->
@@ -99,99 +119,8 @@
         <button class="bg-gray-900 text-white py-2 px-4 rounded">확인</button>
     </div>
 
-    <script>
-        let startTime, interval;
+    <script src="index.js"></script>
 
-        document.getElementById('phoneNumber').addEventListener('input', function (e) {
-            let input = e.target.value.replace(/\D/g, '');
-            if (input.length > 3) {
-                input = input.slice(0, 3) + '-' + input.slice(3);
-            }
-            if (input.length > 8) {
-                input = input.slice(0, 8) + '-' + input.slice(8);
-            }
-            e.target.value = input;
-        });
-
-        function validatePhoneNumber() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const phoneRegex = /^010-\d{4}-\d{4}$/;
-            if (!phoneRegex.test(phoneNumber)) {
-                document.getElementById('error-message').textContent = '올바른 형식의 전화번호를 입력해주세요.';
-            } else {
-                document.getElementById('error-message').textContent = '';
-                showTerms();
-            }
-        }
-
-        function checkAll() {
-            const checkboxes = document.querySelectorAll('#terms input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = document.getElementById('checkAll').checked;
-            });
-        }
-
-        function proceedWithTerms() {
-            const serviceTermsChecked = document.getElementById('serviceTerms').checked;
-            const privacyTermsChecked = document.getElementById('privacyTerms').checked;
-            if (serviceTermsChecked && privacyTermsChecked) {
-                document.getElementById('terms-error-message').textContent = '';
-                showScreen(3);
-            } else {
-                document.getElementById('terms-error-message').textContent = '약관에 동의해주세요.';
-            }
-        }
-
-        function showScreen(screenNumber) {
-            const screens = document.querySelectorAll('.screen');
-            screens.forEach(screen => {
-                screen.classList.remove('active');
-                screen.classList.add('hidden');
-            });
-            const screen = document.getElementById('screen' + screenNumber);
-            screen.classList.add('active');
-            screen.classList.remove('hidden');
-        }
-
-        function showTerms() {
-            document.getElementById('terms').style.display = 'block';
-            document.getElementById('screen2').scrollTo(0, document.getElementById('terms').offsetTop);
-        }
-
-        function startTimer() {
-            showScreen(4);
-            startTime = new Date();
-            interval = setInterval(updateTimer, 1000);
-        }
-
-        function updateTimer() {
-            const now = new Date();
-            const elapsedTime = new Date(now - startTime);
-            const hours = String(elapsedTime.getUTCHours()).padStart(2, '0');
-            const minutes = String(elapsedTime.getUTCMinutes()).padStart(2, '0');
-            const seconds = String(elapsedTime.getUTCSeconds()).padStart(2, '0');
-            document.getElementById('timerhour').textContent = `${hours}`;
-            document.getElementById('timerminutes').textContent = `${minutes}`;
-            document.getElementById('timerseconds').textContent = `${seconds}`;
-        }
-
-        function stopTimer() {
-            clearInterval(interval);
-            const endTime = new Date();
-            const elapsedTime = new Date(endTime - startTime);
-            const hours = elapsedTime.getUTCHours();
-            const minutes = elapsedTime.getUTCMinutes();
-            const seconds = elapsedTime.getUTCSeconds();
-            
-            let formattedTime;
-            if (hours > 0) {
-                formattedTime = `${String(hours).padStart(2, '0')}시간 ${String(minutes).padStart(2, '0')}분 ${String(seconds).padStart(2, '0')}초`;
-            } else {
-                formattedTime = `${String(minutes).padStart(2, '0')}분 ${String(seconds).padStart(2, '0')}초`;
-            }
-            document.getElementById('totalTime').textContent = formattedTime;
-            showScreen(5);
-        }
-    </script>
 </body>
+
 </html>
