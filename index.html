@@ -37,22 +37,25 @@
         <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="validatePhoneNumber()">확인</button>
 
         <!-- Terms and Conditions -->
-        <div id="terms" class="w-full px-4 mt-4">
-            <ul class="list-disc list-inside mb-4 text-gray-700">
-                <li><input type="checkbox" id="checkAll" class="checkbox" onclick="checkAll()"> 약관 모두 동의하기</li>
-                <li><input type="checkbox" id="serviceTerms" class="checkbox"> [필수] 서비스 이용약관</li>
-                <li><input type="checkbox" id="privacyTerms" class="checkbox"> [필수] 개인정보 수집 및 이용 동의</li>
-                <li><input type="checkbox" id="marketingTerms" class="checkbox"> [선택] 마케팅 수신 동의</li>
-            </ul>
-            <div id="terms-error-message" class="text-red-500 mb-4"></div>
-            <button class="bg-gray-900 text-white py-2 px-4 rounded w-full" onclick="proceedWithTerms()">동의하고
-                진행</button>
-        </div>
+         <div>
+            <div id="terms" class="w-full px-4 mt-4">
+                <ul class="list-disc list-inside mb-4 text-gray-700">
+                    <li><input type="checkbox" id="checkAll" class="checkbox" onclick="checkAll()"> 약관 모두 동의하기</li>
+                    <li><input type="checkbox" id="serviceTerms" class="checkbox"> [필수] 서비스 이용약관</li>
+                    <li><input type="checkbox" id="privacyTerms" class="checkbox"> [필수] 개인정보 수집 및 이용 동의</li>
+                    <li><input type="checkbox" id="marketingTerms" class="checkbox"> [선택] 마케팅 수신 동의</li>
+                </ul>
+                <div id="terms-error-message" class="text-red-500 mb-4"></div>
+                <button class="bg-gray-900 text-white py-2 px-4 rounded w-full" onclick="proceedWithTerms()">동의하고
+                    진행</button>
+            </div>
+         </div>
+        
     </div>
 
     <!-- Screen 3 -->
     <div id="screen3" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
-        <img src="picture1.PNG" alt="My Image">
+        <img class="img1" src="picture1.PNG" alt="My Image">
         <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="startTimer()">확인</button>
     </div>
 
@@ -83,7 +86,7 @@
 
     <!-- Screen 5 -->
     <div id="screen5" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
-        <img src="testpictrue2.PNG" alt="My Image">
+        <img class="img2" src="picture2.PNG" alt="My Image">
         <button class="bg-gray-900 text-white py-2 px-4 rounded" onclick="showScreen(6)">확인</button>
     </div>
 
@@ -93,7 +96,7 @@
         <div class="bg-white p-6 rounded-lg shadow-lg w-80">
             <h1 class="text-center text-xl font-bold mb-4">이용이 종료되었습니다</h1>
             <div class="bg-gray-200 p-4 rounded-lg mb-4">
-                <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="mx-auto">
+                <img src="picture3.jpg" alt="Placeholder Image" class="mx-auto">
             </div>
             <div class="bg-gray-200 p-4 rounded-lg mb-4">
                 <p class="text-lg"><strong>이용 시간 :</strong> <strong id="totalTime">총 30분</strong></p>
@@ -101,10 +104,11 @@
                 <p class="text-lg"><strong>위치 :</strong> 온천천-1</p>
             </div>
             <div class="flex justify-around mb-4">
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-full">고장 제보</button>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-full">서비스 문의</button>
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showScreen(7)">고장 제보</button>
+
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showScreen(8)">서비스 문의</button>
             </div>
-            <button class="bg-blue-500 text-white w-full py-2 rounded-lg" onclick="showScreen(7)">확인</button>
+            <button class="bg-blue-500 text-white w-full py-2 rounded-lg">확인</button>
         </div>
     </div>
 
@@ -118,6 +122,13 @@
         <button class="bg-gray-900 text-white py-2 px-4 rounded mb-2">잠금장치가 잠기지 않아요!</button>
         <button class="bg-gray-900 text-white py-2 px-4 rounded">확인</button>
     </div>
+
+    <!-- Screen 8 -->
+    <div id="screen8" class="screen h-screen flex flex-col justify-center items-center bg-gray-100 hidden">
+        <img class="img2" src="picture4.png" alt="My Image">
+
+    </div>
+
 
     <script src="index.js"></script>
 
